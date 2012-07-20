@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, minimum-scale=1, maximum-scale=1' name='viewport'>
+    <title>TwentyFive</title>
+    <link href='jquery.mobile-1.1.0.css' rel='stylesheet'>
+    <link href='app.css' rel='stylesheet'>    
+  </head>
+  <body>
+    <div data-role='page' id='main'>
+      <div data-role='header'>
+        <h1>TwentyFive</h1>
+        <a class='ui-btn-right' data-role='button' href='#contact'>關於</a>
+      </div>
+      <div data-role='content'>
+        <p id='timer'>00:00</p>
+        <a data-role='button' id='reset'>重新計時</a>
+      </div>
+    </div>
+	<div data-role='dialog' id='finish'>
+		<div data-role='content'>
+			到時間了!!
+			<a data-role='button' href='#main'>OK</a>
+		</div>
+	</div>
+    <div data-role='page' id='contact'>
+      <div data-role='header'>
+        <h1>關於</h1>
+        <a data-icon='arrow-l' data-rel='back'>TwentyFive</a>
+      </div>
+      <div data-role='content'>
+        <p>
+          這是一個 25 分鐘倒計時器。運用了一種稱為 <a href='http://www.pomodorotechnique.com/'>Pomodoro</a> 的工作時間分配技巧。
+        </p>
+        <p>
+          電話：
+          <a href='tel:+85366331234'>+853 6633 1234</a>
+        </p>
+        <p>
+          電郵：
+          <a href='mailto:twentyfive@mz-lab.com'>twentyfive@mz-lab.com</a>
+        </p>
+      </div>
+    </div>
+
+	<script src='jquery-1.7.2.min.js'></script>
+    <script src='jquery.mobile-1.1.0.js'></script>
+    <script src='app.js'></script>
+  </body>
+</html>
