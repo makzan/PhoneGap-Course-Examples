@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, minimum-scale=1, maximum-scale=1' name='viewport'>
+    <title>HTML5 Cheat Sheet</title>
+    <link href='jquery.mobile-1.1.0.css' rel='stylesheet'>
+    <link href='app.css' rel='stylesheet'>
+    <script src='jquery-1.7.2.min.js'></script>
+    <script>
+    $(document).bind("mobileinit", function(){
+        $.mobile.page.prototype.options.addBackBtn = true;
+        $.mobile.listview.prototype.options.headerTheme = "a";
+    });
+    </script>
+    <script src='jquery.mobile-1.1.0.js'></script>
+    <script src='app.js'></script>
+  </head>
+  <body>
+    <div data-role='page' id='news'>
+      <div data-position='fixed' data-role='header'>
+        <h1>HTML5 Cheat Sheet</h1>
+        <a class='ui-btn-right' data-role='button' href='#about'>About</a>
+      </div>
+      <section data-role='content'>
+        <ul data-role='listview' id='tags'></ul>
+      </section>
+    </div>
+    <div data-role='page' id='about'>
+      <div data-role='header'>
+        <h2>About</h2>
+        <a data-icon='arrow-l' data-rel='back'>HTML5 Cheat Sheet</a>
+      </div>
+      <div data-role='content'>
+        <p>
+          This is a cheatsheet app to quickly reference spcific tags and its explaniation. Every row links to the detail explanation from Mozilla Develoepr Network.
+        </p>
+        <p>
+          EMail：
+          <a href='mailto:twentyfive@mz-lab.com'>html5-cheatsheet@mz-lab.com</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
