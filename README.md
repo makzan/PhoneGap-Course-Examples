@@ -1,4 +1,4 @@
-PhoneGap-Course-Examples
+PhoneGap and jQuery Mobile Course Examples
 ========================
 
-Example codes for PhoneGap course
+Example codes for PhoneGap and jQuery Mobile course.
