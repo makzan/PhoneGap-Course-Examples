@@ -14,7 +14,11 @@
 
     // before adding dividers, make sure we have sort the tags
     tags.sort(function(a, b) {
-      return a.name > b.name;
+      if (a.name < b.name)
+        return -1;
+      if (a.name > b.name)
+        return 1;
+      return 0;
     });
 
     var currentDivider = '';

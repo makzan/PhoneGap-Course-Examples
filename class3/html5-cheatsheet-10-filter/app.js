@@ -11,6 +11,44 @@
     //make the button reacts faster
     $.mobile.buttonMarkup.hoverDelay = 0;
 
+    if (window.Touch) {
+
+      $('a').bind('touchstart', function(e) {
+        e.preventDefault();
+      });
+
+      $('a').bind('touchend', function(e) {
+        e.preventDefault();
+        return $(this).trigger('click');
+      });
+
+    }
+
+
+
+    $('#sort-alpha').click(function(){
+      refreshListWithAlphaSort();
+    })
+
+    $('#sort-type').click(function(){
+      refreshListWithTypeSort();
+    })
+
+    $('#sort-new').click(function(){
+      refreshListWithNewTags();
+    })
+
+    $('#sort-obsolete').click(function(){
+      refreshListWithObsoleteTags();
+    })
+
+
+    refreshListWithAlphaSort();
+
+  })
+
+  var refreshListWithAlphaSort = function() {
+    $('#tags').empty(); // empty the element first.
 
     // before adding dividers, make sure we have sort the tags
     tags.sort(function(a, b) {
@@ -19,15 +57,10 @@
       if (a.name > b.name)
         return 1;
       return 0;
-    });
+    });  
 
     var currentDivider = '';
     
-    // construct three ul sub-list, all, new tag, obsolete
-    $('#tags').append("<li>All Tags <ul id='all-tags'></ul></li>");
-    $('#tags').append("<li>New Tags <ul id='new-tags'></ul></li>");
-    $('#tags').append("<li>Obsolete Tags <ul id='obsolete-tags'></ul></li>");
-
     //append li to the ul#tags
     for (var i=0, len=tags.length; i<len; i++) {
       tag = tags[i];
@@ -37,39 +70,83 @@
 
       if (firstCharacter != currentDivider)
       {
-        $('#all-tags').append("<li data-role='list-divider'>" + firstCharacter.toUpperCase() + "</li>");
+        $('#tags').append("<li data-role='list-divider'>" + firstCharacter.toUpperCase() + "</li>");
         currentDivider = firstCharacter;
       }
 
-      // obsolete
-      var obsolete = '';
-      var obsoleteClass='';
-      if (!tag.html5) 
-      {
-        obsolete = "<p class='ui-li-count'>obsolete</p>";
-        obsoleteClass = 'obsolete';
-
-        $('#obsolete-tags').append("<li><a href='http://developer.mozilla.org/en/HTML/Element/" + tag.name + "'>" + tag.name + obsolete + "</a></li>");
-      }
-        
-      var newTag = '';
-      var iconFile = 'empty.png';
-      if (!tag.html4 && tag.html5)
-      {
-        newTag = "<p class='ui-li-count'>html5</p>";
-        iconFile = 'html5.png';
-
-        $('#new-tags').append("<li><a href='http://developer.mozilla.org/en/HTML/Element/" + tag.name + "'><h1>" + tag + "</h1><p> " + tag.explain + "</p>" + newTag + "</a></li>");
-      }
-        
-
-      $('#all-tags').append("<li class='" + obsoleteClass + "'><a href='http://developer.mozilla.org/en/HTML/Element/" + tag.name + "'><img src='images/" + iconFile + "' class='ui-li-icon'><h1>" + tag + "</h1><p> " + tag.explain + "</p>" + obsolete + newTag +"</a></li>");
+      $('#tags').append(tag.toListItem());
     }
 
     // refresh the tags listview programatically.
     $('#tags').listview('refresh');
+  }
 
-  })
+  var refreshListWithTypeSort = function () {
+    $('#tags').empty(); // empty the element first.
+
+    // append new tags
+    $('#tags').append("<li data-role='list-divider'> New Tags </li>");
+    for (var i=0, len=tags.length; i<len; i++) {
+      tag = tags[i];
+
+      if (!tag.html4 && tag.html5)
+        $('#tags').append(tag.toListItem());
+    }
+
+    // append tags on both html4 & 5
+    $('#tags').append("<li data-role='list-divider'> Normal Tags </li>");
+    for (var i=0, len=tags.length; i<len; i++) {
+      tag = tags[i];
+
+      if (tag.html4 && tag.html5)
+        $('#tags').append(tag.toListItem());
+    }
+
+    // append obsolete tags
+    $('#tags').append("<li data-role='list-divider'> Obsolete Tags </li>");
+    for (var i=0, len=tags.length; i<len; i++) {
+      tag = tags[i];
+
+      if (tag.html4 && !tag.html5)
+        $('#tags').append(tag.toListItem());
+    }
+
+    // refresh the tags listview programatically.
+    $('#tags').listview('refresh');
+  }
+
+  var refreshListWithNewTags = function () {
+    $('#tags').empty(); // empty the element first.
+
+    // append new tags
+    $('#tags').append("<li data-role='list-divider'> New Tags </li>");
+    for (var i=0, len=tags.length; i<len; i++) {
+      tag = tags[i];
+
+      if (!tag.html4 && tag.html5)
+        $('#tags').append(tag.toListItem());
+    }
+
+    // refresh the tags listview programatically.
+    $('#tags').listview('refresh');
+  }
+
+  var refreshListWithObsoleteTags = function () {
+    $('#tags').empty(); // empty the element first.
+
+    // append obsolete tags
+    $('#tags').append("<li data-role='list-divider'> Obsolete Tags </li>");
+    for (var i=0, len=tags.length; i<len; i++) {
+      tag = tags[i];
+
+      if (tag.html4 && !tag.html5)
+        $('#tags').append(tag.toListItem());
+    }
+
+    // refresh the tags listview programatically.
+    $('#tags').listview('refresh');
+  }
+
 
 
   // Tag class
@@ -91,12 +168,41 @@
       return "&lt;" + this.name + "&gt;";
     }
 
+    Tag.prototype.toListItem = function() {
+      // obsolete
+      var obsolete = '';
+      var obsoleteClass='';
+      if (!tag.html5) 
+      {
+        obsolete = "<p class='ui-li-count'>obsolete</p>";
+        obsoleteClass = 'obsolete';
+      }
+        
+      var newTag = '';
+      var iconFile = 'empty.png';
+      if (!tag.html4 && tag.html5)
+      {
+        newTag = "<p class='ui-li-count'>html5</p>";
+        iconFile = 'html5.png';
+
+      }
+
+      return "<li class='" + obsoleteClass + "'><a href='http://developer.mozilla.org/en/HTML/Element/" + tag.name + "'><img src='images/" + iconFile + "' class='ui-li-icon'><h1>" + tag + "</h1><p> " + tag.explain + "</p>" + obsolete + newTag +"</a></li>";
+    }
+
     return Tag;
   })(); // end of Tag class
 
   // the Tag data
 
   var tags = [];
+
+
+
+  
+
+
+  // finally, the data
 
   tags.push(new Tag('br', 'inserts a single line break'));
   tags.push(new Tag('a', 'defines a hyperlink'));
