@@ -198,9 +198,7 @@
 (function() {
   var FeedbacksView = (function(){
     // expected data is array of object with name, email, message as key in each object.
-    function FeedbacksView(data, element){
-      this.data = data;
-      this.element = element;
+    function FeedbacksView(){      
     }
 
     // posting view
@@ -349,8 +347,7 @@
     });
 
     // init the FeedbacksView to handle the feedback submit button.
-    var feedbacksView = new FeedbacksView();
-    feedbacksView.handlePostButton();
+    (new FeedbacksView()).handlePostButton();
 
 
     // let the jQuery Mobile initialize the page.

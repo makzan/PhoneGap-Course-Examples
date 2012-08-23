@@ -375,8 +375,7 @@
     });
 
     // init the FeedbacksView to handle the feedback submit button.
-    var feedbacksView = new FeedbacksView();
-    feedbacksView.handlePostButton();
+    (new FeedbacksView()).handlePostButton();
 
 
     // let the jQuery Mobile initialize the page.
