@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, minimum-scale=1, maximum-scale=1' name='viewport'>
+    <title>Great Limited</title>
+    <link href='jquery.mobile-1.1.0.css' rel='stylesheet'>
+    <link href='app.css' rel='stylesheet'>
+    <script src='jquery-1.7.2.js'></script>
+    <script src='jquery.mobile-1.1.0.js'></script>
+    <script>
+      $.mobile.autoInitializePage = false;
+    </script>
+    <script src='http://maps.google.com/maps/api/js?sensor=true'></script>
+    <script src='jquery.ui.map.full.min.js'></script>
+    <script src='moment-1.6.2.min.js'></script>
+    <script src='cordova-1.9.0.js'></script>
+    <script src='app.js'></script>
+  </head>
+  <body>
+    <!-- ////////// Home -->
+    <article data-role='page' id='main'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Great Limited</h1>
+        
+      </header>
+      <section data-role='content'>
+        <h2>News</h2>
+        <ul data-inset='true' data-role='listview' id='news-list'>
+          
+        </ul>
+      </section>
+    </article>
+    <!-- ///////// News Detail -->
+    <article data-role='page' id='news-detail'>
+      <header data-position='fixed' data-role='header'>
+        <h1>News Title</h1>
+        <a data-icon='arrow-l' data-rel='back'>Home</a>
+      </header>
+      <section data-role='content'>
+        <p>News Content here</p>
+        <p>News Content here</p>
+        <p>News Content here</p>
+        <p>News Content here</p>
+        <p>News Content here</p>
+      </section>
+    </article>
+
+    <!-- /////////// Twitter Page -->
+    <article data-role='page' id='twitter'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Twitter</h1>
+      </header>
+      <section data-role='content'>
+        <h2>Twitter Feeds</h2>
+        <ul data-inset='true' data-role='listview' id='tweet-list'></ul>
+      </section>
+    </article>
+
+    <!-- ////////// About Page -->
+    <article data-role='page' id='about'>
+      <header data-position='fixed' data-role='header'>
+        <h1>About</h1>
+      </header>
+      <section data-role='content'>
+        <h2>This App</h2>
+        <p>
+          This is the official app for the Great Ltd. Here you can read our latest news, know our store locations and leave feedback to us.
+        </p>
+
+        <h2>Address</h2>
+        <a data-transition='pop' href='#map-page'>
+          <img src='images/map.png'>
+        </a>
+
+        <h2>Develop By</h2>
+        <p>Thomas Mak</p>
+
+        <h2>Contact</h2>
+        <div data-role='controlgroup'>
+          <a href='#feedback' data-role='button'>Leave feedback</a>
+          <a href='#list-feedback' data-role='button'>List feedbacks</a>
+          <a href='#contact-us' data-role='button'>Contact Us</a>
+        </div>
+      </section>
+    </article>
+
+    <!-- ////////// Feedback Page -->    
+    <article data-role='page' id='feedback'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Feedback</h1>
+        <a data-icon='arrow-l' data-rel='back'>About</a>
+      </header>
+      <section data-role='content'>        
+        <p>Your feedback is valuble to us.</p>
+        <label for='feedback-name'>Your Name</label>
+        <input type='text' id='feedback-name'>
+        <label for='feedback-email'>Email</label>
+        <input type='text' id='feedback-email'>
+        <label for='feedback-message'>Message</label>
+        <textarea id='feedback-message'></textarea>
+        <input id='feedback-submit' type='submit' value='send'>
+      </section>
+    </article>
+
+    <!-- ////////// List Feedback Page -->    
+    <article data-role='page' id='list-feedback'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Feedbacks</h1>
+        <a data-icon='arrow-l' data-rel='back'>About</a>
+      </header>
+      <section data-role='content'>        
+        <ul data-role='listview' id='feedbacks-list'></ul>
+      </section>
+    </article>
+
+    <!-- ////////// Contact Us Page -->    
+    <article data-role='page' id='contact-us'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Contact Us</h1>        
+      </header>
+      <section data-role='content'>        
+        <fieldset data-role="controlgroup">
+          <legend>Which platform you use?</legend>
+          <input type="checkbox" name="contact-windows" id="contact-windows"> 
+          <label for="contact-windows">Windows</label>
+          <input type="checkbox" name="contact-mac" id="contact-mac"> 
+          <label for="contact-mac">Mac OS X</label>
+          <input type="checkbox" name="contact-linux" id="contact-linux"> 
+          <label for="contact-linux">Linux</label>
+        </fieldset>
+
+        <fieldset data-role="controlgroup" data-type="horizontal"> 
+          <legend>Your Gender:</legend>
+          <input type="radio" name="contact-gender" id="radio-male" value='m' checked="checked"> 
+          <label for="radio-male">Male</label>
+          <input type="radio" name="contact-gender" id="radio-female" value='f'>          
+          <label for="radio-female">Female</label>       
+        </fieldset>
+
+
+        <fieldset>
+          <label for="contact-phone">Shall we contact your phone?</label>
+          <select name="contact-phone" id="contact-phone" data-role="slider">
+            <option value="off">NO</option>
+            <option value="on">YES</option> 
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <label for="contact-message">Please describe the issue.</label>
+          <textarea id="contact-message"></textarea>
+        </fieldset>
+
+        <input id='contact-submit' type='submit' value='Send'>
+
+      </section>
+    </article>
+
+    <!-- ////////// Map Page -->
+    <article data-role='page' id='map-page'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Map</h1>
+        <a data-icon='arrow-l' data-rel='back'>About</a>
+      </header>
+      <section data-role='content'>
+        <div id='map'></div>
+      </section>
+    </article>
+
+    <!-- /////////// Photo Page -->
+    <article data-role='page' id='facebook'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Photos on FB</h1>        
+      </header>
+      <section data-role='content'>
+        <div id='photos'>
+        </div>
+      </section>
+    </article>
+
+
+    <!-- /////////// View Photo Page -->
+    <article data-role='page' id='photo-view'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Photo</h1>  
+        <a data-icon='arrow-l' data-rel='back'>Photos</a>      
+      </header>
+      <section data-role='content'>
+        <div id='photo'></div>        
+      </section>
+    </article>
+
+    <!-- /////////// Templates -->
+    <div class='footer-template'>
+      <footer data-id='footer' data-position='fixed' data-role='footer'>
+        <div data-role='navbar'>
+          <ul>
+            <li class='first-page'>
+              <a data-icon='home' data-transition='none' href='#main'>Home</a>
+            </li>
+            <li class="facebook-page">
+              <a data-icon='grid' data-transition='none' href='#facebook'>Photos</a>
+            </li>
+            <li class='second-page'>
+              <a data-icon='star' data-transition='none' href='#twitter'>Twitter</a>
+            </li>
+            <li class='third-page'>
+              <a data-icon='gear' data-transition='none' href='#about'>About</a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+  </body>
+</html>

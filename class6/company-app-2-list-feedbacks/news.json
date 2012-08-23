@@ -1,0 +1,28 @@
+callback({
+  "news": [
+    {
+      "date": "2012-08-01 15:14:13", 
+      "content": "Do you really think that you will read real news here? No kids, this is just a dummy text.", 
+      "image": "http://placekitten.com/300/200", 
+      "title": "Welcome to read our news here"
+    }, 
+    {
+      "date": "2012-08-08 15:14:13", 
+      "content": "So, here is a long long text to describe the news. The news that our products from Great Limited has been released on this monday. Are you excited about that? No? Cool. I don't too.", 
+      "image": "http://placekitten.com/300/200?image=3", 
+      "title": "Our latest product released on this monday."
+    }, 
+    {
+      "date": "2012-08-09 13:14:13", 
+      "content": "Our mystery product has been released for a week and we gain so much positive ratings and feedbacks. Thanks all who love our products.", 
+      "image": "http://placekitten.com/300/200?image=4", 
+      "title": "Thanks all for the positive feedback on our product"
+    }, 
+    {
+      "date": "2012-08-10 16:12:13", 
+      "content": "Welcome to our another news. We are working on a mystery new product.", 
+      "image": "http://placekitten.com/300/200?image=8", 
+      "title": "Another news here"
+    }
+  ]
+})
