@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, minimum-scale=1, maximum-scale=1' name='viewport'>
+    <title>Diary</title>
+    <link href='jquery.mobile-1.1.0.css' rel='stylesheet'>
+    <link href='app.css' rel='stylesheet'>
+    <script src='cordova-1.9.0.js'></script>
+    <script src='jquery-1.7.2.js'></script>
+    <script src='jquery.mobile-1.1.0.js'></script>
+    <script src='app.js'></script>
+  </head>
+  <body>
+    <!-- ////////// Home -->
+    <article data-role='page' id='main'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Diary</h1>        
+      </header>
+      <section data-role='content'>
+        <div data-role='controlgroup'>
+          <a data-role='button' id='capture-photo'>Capture photo</a>
+        </div>      
+        <img id='photo'>
+        <h4>Actions</h4>
+        <ul data-role='listview'>
+          <li>
+            <a href="#" id='create-button'>Create Entry</a>          
+          </li>
+        </ul>
+        
+
+        <h4>Diary Entries</h4>
+        <ul data-role='listview' id='entries-list'></ul>
+      </section>
+    </article>
+  </body>
+</html>
