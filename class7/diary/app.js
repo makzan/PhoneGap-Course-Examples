@@ -189,13 +189,14 @@
       //success callback: 
       function(acceleration){
         this.acceleration = acceleration;
+        console.log("acceleration: x:" + acceleration.x + " y: " + acceleration.y + " z :" + acceleration.z);
       }, 
       // error callback: 
       function(){
         // error on getting acceleration.
       }, 
       // options: 
-      { frequency: 3000 }); 
+      { frequency: 1000 }); 
     }
 
     PhoneGapManager.prototype.prepareDatabase = function() {

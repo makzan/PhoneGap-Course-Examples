@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, minimum-scale=1, maximum-scale=1' name='viewport'>
+    <title>Diary</title>
+    <link href='jquery.mobile-1.1.0.css' rel='stylesheet'>
+    <link href='app.css' rel='stylesheet'>
+    <script src='cordova-1.9.0.js'></script>
+    <script src='video.js'></script>
+    <script src='jquery-1.7.2.js'></script>
+    <script src='jquery.mobile-1.1.0.js'></script>
+    <script src='app.js'></script>
+  </head>
+  <body>
+    <!-- ////////// Home -->
+    <article data-role='page' id='main'>
+      <header data-position='fixed' data-role='header'>
+        <h1>Diary</h1>        
+      </header>
+      <section data-role='content'>
+        <div data-role='controlgroup'>
+          <a data-role='button' id='new-entry-button' href='#create'>Create</a>          
+        </div>
+
+        <div data-role='controlgroup'>
+          <a data-role='button' id='list-all-button' href='#list'>All</a>          
+          <a data-role='button' id='list-photos-button' href='#all'>Photos</a>          
+          <a data-role='button' id='list-drawings-button' href='#all'>Drawings</a>          
+          <a data-role='button' id='list-videos-button' href='#all'>Videos</a>          
+          <a data-role='button' id='list-audios-button' href='#all'>Audios</a>          
+        </div>              
+        
+      </section>
+    </article>
+
+    <article data-role='page' id="list">
+      <header data-role='header'>
+        <h1>List Entries</h1>
+        <a data-icon='arrow-l' data-rel='back'>Home</a>
+      </header>
+      <section data-role='content'>
+        <ul data-role='listview' id='entries-list'></ul>
+      </section>
+    </article>
+
+    <article data-role='page' id="create">
+      <header data-position='fixed' data-role='header'>
+        <h1>Create</h1>
+        <a data-icon='arrow-l' data-rel='back'>Home</a>
+      </header>
+      <section data-role='content'>        
+        <label for='form-diary'>Record your life</label>
+        <textarea id='form-diary'></textarea>
+
+        <div>
+          <!-- <img id='photo'> -->
+        </div>
+        <div data-role='controlgroup'>
+          <a data-role='button' id='add-photo'>Add Photo</a>          
+          <a data-role='button' id='add-video'>Add Video</a>          
+          <a data-role='button' id='add-audio'>Add Audio</a>          
+          <a data-role='button' id='add-drawing' href='#draw'>Add Drawing</a>          
+        </div> 
+
+        <input id='form-submit' type='submit' value='Create'>
+      </section>
+    </article>
+
+    <article data-role="page" id="draw">
+      <header data-role="header">
+        <h1>Draw your diary</h1>
+        <a data-icon='arrow-l' data-rel='back' id='done-drawing'>Done</a>
+      </header>
+      <section data-role="content">
+        <canvas id='drawing-pad' width='300' height='300'></canvas>
+      </section>
+    </article>
+
+    <article data-role="page" id="view">
+      <header data-role='header'>
+        <h1>View Entry</h1>
+        <a data-icon='arrow-l' data-rel='back'>Back</a>
+      </header>
+      <section data-role='content'>
+        <div id="photo"></div>
+        <div id='content'></div>
+      </section>
+    </article>
+
+  </body>
+</html>
