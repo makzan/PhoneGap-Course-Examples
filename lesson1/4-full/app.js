@@ -16,8 +16,8 @@
   }
 
   // a method to remove listener from the list
-  tf.ticker.removeListener = function (target) {    
-    // loop to find the target in the array    
+  tf.ticker.removeListener = function (target) {
+    // loop to find the target in the array
     for (var i=0, len= tf.ticker.tickListeners.length; i < len; i++)
     {
       if (tf.ticker.tickListeners[i] == target) {
@@ -40,7 +40,7 @@
 
   tf.globalInterval = setInterval(tf.ticker.tick, 1000); // finally start the ticker, every second.
 
-}).call(this); // end of ticker module
+})(); // end of ticker module
 
 
 // The TwentyFive countdown module
@@ -67,13 +67,13 @@
     TwentyFiveTimer.prototype.tick = function() {
       this.counter--; // the real counting down.
 
-      if (this.counter < 0) 
+      if (this.counter < 0)
       {
         this.counter = 0; // dont forget to set the boundary.
-      
+
         // call the dialog when the counter reaches 0
         $.mobile.changePage("#finish");
-        
+
         this.stop();
       }
 
@@ -88,11 +88,11 @@
       // display it, finally.
       $(this.element).html(minute + ":" + second);
     }
-    
+
     TwentyFiveTimer.prototype.start = function() {
-      tf.ticker.addListener(this); // add self instance to the ticker list, so we will get tick invoked.      
+      tf.ticker.addListener(this); // add self instance to the ticker list, so we will get tick invoked.
     }
-    
+
     TwentyFiveTimer.prototype.stop = function() {
       tf.ticker.removeListener(this);
     }
@@ -110,13 +110,13 @@
   // and set it to our global scope to let other module to use it.
   tf.TwentyFiveTimer = TwentyFiveTimer;
 
-}).call(this);
+})();
 
 
 // The app module
 (function() {
 
-  
+
   // jQuery ready callback
   $(function() {
     // disable the default mobile safari long tap behavior on elements
@@ -130,7 +130,7 @@
 
     $('#timer').html('25:00');
 
-    var timer = new tf.TwentyFiveTimer($('#timer'));    
+    var timer = new tf.TwentyFiveTimer($('#timer'));
     timer.start();
 
     // handle the reset button
@@ -140,6 +140,6 @@
 
   });
 
-}).call(this); // end of the app module
+})(); // end of the app module
 
 

@@ -1,0 +1,7 @@
+/* Styling */
+
+#timer {
+  text-align: center;
+  font-size: 4em;
+  text-shadow: #fff 0 1px 0, #000 0 -2px 0;
+}

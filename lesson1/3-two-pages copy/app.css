@@ -1,0 +1,14 @@
+/* Styling */
+
+#timer {
+  text-align: center;
+  font-size: 4em;
+  text-shadow: #fff 0 1px 0, #000 0 -2px 0;
+}
+
+/* overwrite jquery mobile CSS */
+.slide.out, .slide.in {
+  -webkit-animation-duration: 280ms;
+  -moz-animation-duration: 280ms;
+  animation-duration: 280ms; /* 300 */
+}

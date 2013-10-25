@@ -1,0 +1,80 @@
+/* Styling */
+
+
+#timer {
+  text-align: center;
+  font-size: 4em;
+  text-shadow: #fff 0 1px 0, #000 0 -2px 0;
+}
+
+/* override */
+.ui-btn-corner-all {
+  border-radius: 5px;
+}
+
+.ui-link:active {
+  color: none;
+}
+
+/* More animations */
+@-webkit-keyframes stay {
+    from { -webkit-transform: translate3d(0,0,0); }
+    to { -webkit-transform: translate3d(0,0,0); }
+}
+@-moz-keyframes stay {
+    from { -moz-transform: translateX(0); }
+    to { -moz-transform: translateX(0); }
+}
+@keyframes stay {
+    from { transform: translateX(0); }
+    to { transform: translateX(0); }
+}
+
+/* Custom Slide transition */
+.customslide.out, .customslide.in {
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-duration: 250ms;
+  -moz-animation-timing-function: ease-out;
+  -moz-animation-duration: 250ms;
+  animation-timing-function: ease-out;
+  animation-duration: 250ms;
+}
+.customslide.out {
+/*  -webkit-animation-name: slideouttoleft;
+  -moz-animation-name: slideouttoleft;
+  animation-name: slideouttoleft;*/
+}
+.customslide.in {
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-animation-name: slideinfromright;
+  -moz-transform: translateX(0);
+  -moz-animation-name: slideinfromright;
+  transform: translateX(0);
+  animation-name: slideinfromright;
+}
+.customslide.out.reverse {
+  -webkit-transform: translate3d(100%,0,0);
+  -webkit-animation-name: slideouttoright;
+  -moz-transform: translateX(100%);
+  -moz-animation-name: slideouttoright;
+  transform: translateX(100%);
+  animation-name: slideouttoright;
+}
+.customslide.in.reverse {
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-animation-name: stay;
+  -moz-transform: translateX(0);
+  -moz-animation-name: stay;
+  transform: translateX(0);
+  animation-name: stay;
+}
+
+/* Override the slide transition */
+.slide.out, .slide.in {
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-duration: 250ms;
+  -moz-animation-timing-function: ease-out;
+  -moz-animation-duration: 250ms;
+  animation-timing-function: ease-out;
+  animation-duration: 250ms;
+}
