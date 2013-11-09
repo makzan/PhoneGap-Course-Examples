@@ -1,0 +1,19 @@
+
+
+.sunny {
+  background: #ade1f9 url(images/sunny.png) no-repeat center center;
+}
+.rain {
+  background: #ade1f9 url(images/rain.png) no-repeat center center;
+}
+.loading {
+ background: #ade1f9 url(images/loading.png) no-repeat center center;
+}
+
+#root {
+  background: #ade1f9;
+}
+
+#rain-content {
+  height: 400px;
+}
