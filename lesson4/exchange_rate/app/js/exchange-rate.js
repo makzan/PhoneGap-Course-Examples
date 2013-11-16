@@ -60,12 +60,12 @@ if (window.Touch) {
 }).call(this, jQuery);
 
 // Controller Logic
-;(function($){
+;(function(){
 
   app.view.button.on('click', function(){
     var cny = app.view.input.val() * 1;
     var mop = app.Exchange(cny, 'CNY').to('MOP');
     app.view.updateResult(cny, mop);
   });
-}).call(this, jQuery);
+}).call(this);
 
