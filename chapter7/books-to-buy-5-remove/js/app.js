@@ -30,7 +30,6 @@ if (window.Touch) {
   data.removeBook = function(isbn) {
     for(var i=0, len=data.books.length; i<len; i++) {
       var book = data.books[i];
-      console.log(book.isbn, isbn);
       if (book.isbn === isbn) {
         data.books.splice(i, 1);
         return;
