@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, minimum-scale=1, maximum-scale=1' name='viewport'>
+    <title>Books to Buy</title>
+    <link href='vendors/jquery.mobile-1.4.0.css' rel='stylesheet'>
+    <link href='css/app.css' rel='stylesheet'>
+  </head>
+  <body>
+    <div data-role='page' id='root'>
+      <div data-role="panel" id='tags-panel'>
+        <h3>Select Tags</h3>
+        <div data-role='controlgroup' id='tag-list'></div>
+      </div>
+      <div data-role='header'>
+        <h1>Books to Buy</h1>
+        <a data-role='button' href='#tags-panel'>Tags</a>
+        <a data-role='button' data-transition='slide' href='#about'>About</a>
+      </div>
+      <div data-role='content'>
+        <h3>List of Books</h3>
+        <ul data-role='listview' data-filter='true' data-inset='true' data-split-icon='delete' id="books"></ul>
+        <h3>Add New Book</h3>
+        <ul data-role='listview' data-inset='true'>
+          <li><input type='text' data-mini='true' id='book-title' placeholder='Book Title'></li>
+          <li><input type='text' data-mini='true' id='book-isbn' placeholder='ISBN'></li>
+          <li><input type='text' data-mini='true' id='book-tags' placeholder='Tags (Separated by comma)'></li>
+        </ul>
+        <input type='button' value='Add to wish list' id='add-book-btn'>
+      </div>
+    </div>
+    <div data-role='page' id='about'>
+      <div data-role='header'>
+        <h2>About</h2>
+        <a data-icon='arrow-l' data-rel='back'>Books to Buy</a>
+      </div>
+      <div data-role='content'>
+        <p>Your personal wish list for books.</p>
+      </div>
+    </div>
+
+    <div id='templates'>
+      <li class='book-entry'>
+        <a class='amazon-link' href='#'>
+          <h1 class='book-title'></h1>
+          <p class='isbn'></p>
+          <p class='tags'></p>
+        </a>
+        <a href='#' class='delete-btn' data-isbn=''>X Remove</a>
+      </li>
+      <div class='tag-entry'>
+        <label for="tag-dummy">dummy</label>
+        <input type="checkbox" name="tag-dummy" value="dummy" id="tag-dummy">
+      </div>
+    </div>
+
+
+    <script src='vendors/jquery-2.0.3.js'></script>
+    <script src='vendors/jquery.mobile-1.4.0.js'></script>
+    <script src='vendors/lodash-2.4.1.js'></script>
+    <script src='js/app.js'></script>
+  </body>
+</html>

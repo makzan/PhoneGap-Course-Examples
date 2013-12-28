@@ -15,9 +15,10 @@ if (window.Touch) {
   var app = this.app || (this.app={});
 
   var Book = (function(){
-    function Book(title, isbn) {
+    function Book(title, isbn, tags) {
       this.title = title;
       this.isbn = isbn || "";
+      this.tags = tags || "";
     }
     return Book;
   })();
@@ -27,8 +28,8 @@ if (window.Touch) {
   data.saveToLocal = function() {
     localStorage.setItem("books", JSON.stringify(this.books));
   }
-  data.addBook = function(title, isbn) {
-    this.books.push(new Book(title, isbn));
+  data.addBook = function(title, isbn, tags) {
+    this.books.push(new Book(title, isbn, tags));
     this.saveToLocal();
   };
   data.removeBook = function(isbn) {
@@ -56,9 +57,11 @@ if (window.Touch) {
   view.inputs = {};
   view.inputs.title = $('#book-title');
   view.inputs.isbn = $('#book-isbn');
+  view.inputs.tags = $('#book-tags');
   view.inputs.clear = function() {
     view.inputs.title.val('');
     view.inputs.isbn.val('');
+    view.inputs.tags.val('');
   }
 
   view.bookEntryTemplate = $('#templates').find('.book-entry');
@@ -71,8 +74,10 @@ if (window.Touch) {
 
       var book = app.data.books[i];
 
+      clone.find('a.amazon-link').attr('href', 'http://www.amazon.com/s/?field-keywords='+book.title);
       clone.find('.book-title').html(book.title);
       clone.find('.isbn').html(book.isbn);
+      clone.find('.tags').html(book.tags);
       clone.find('.delete-btn').attr('data-isbn', book.isbn);
 
       view.listElement.append(clone);
@@ -96,7 +101,8 @@ if (window.Touch) {
     $('#add-book-btn').click(function(){
       var title = app.view.inputs.title.val();
       var isbn = app.view.inputs.isbn.val();
-      app.data.addBook(title, isbn);
+      var tags = app.view.inputs.tags.val();
+      app.data.addBook(title, isbn, tags);
       app.view.renderList();
       app.view.inputs.clear();
     });

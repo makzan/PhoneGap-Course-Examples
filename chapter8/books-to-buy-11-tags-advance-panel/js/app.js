@@ -23,23 +23,43 @@ if (window.Touch) {
   })();
 
   var data = app.data = {};
-  data.books = JSON.parse(localStorage.getItem("books")) || [];
-  data.saveToLocal = function() {
-    localStorage.setItem("books", JSON.stringify(this.books));
-  }
-  data.addBook = function(title, isbn) {
-    this.books.push(new Book(title, isbn));
-    this.saveToLocal();
+
+  // Storage Module
+  (function(){
+    this.storage = {};
+    this.storage.saveList = function(name, list) {
+      localStorage.setItem(name, JSON.stringify(list));
+    }
+    this.storage.loadList = function(name) {
+      return JSON.parse(localStorage.getItem(name)) || [];
+    }
+  }).call(data);
+
+
+  data.books = data.storage.loadList("books");
+  data.addBook = function(title, isbn, tags) {
+    this.books.push(new Book(title, isbn, tags));
+    this.storage.saveList("books", this.books);
+    this.addTags(tags);
   };
   data.removeBook = function(isbn) {
     for(var i=0, len=data.books.length; i<len; i++) {
       var book = data.books[i];
       if (book.isbn === isbn) {
         this.books.splice(i, 1);
-        this.saveToLocal();
+        this.storage.saveList("books", this.books);
         return;
       }
     }
+  }
+  data.loadTags = function() {
+    return data.storage.loadList("tags");
+  }
+  data.addTags = function(tagsString) {
+    var tags = tagsString.split(/\s*,\s*/);
+    var oldTags = this.storage.loadList("tags");
+    var newTags = _.union(oldTags, tags);
+    this.storage.saveList("tags", newTags);
   }
 
 }).call(this, jQuery);
@@ -56,9 +76,11 @@ if (window.Touch) {
   view.inputs = {};
   view.inputs.title = $('#book-title');
   view.inputs.isbn = $('#book-isbn');
+  view.inputs.tags = $('#book-tags');
   view.inputs.clear = function() {
     view.inputs.title.val('');
     view.inputs.isbn.val('');
+    view.inputs.tags.val('');
   }
 
   view.bookEntryTemplate = $('#templates').find('.book-entry');
@@ -71,14 +93,35 @@ if (window.Touch) {
 
       var book = app.data.books[i];
 
+      clone.find('a.amazon-link').attr('href', 'http://www.amazon.com/s/?field-keywords='+book.title);
       clone.find('.book-title').html(book.title);
       clone.find('.isbn').html(book.isbn);
+      clone.find('.tags').html(book.tags);
       clone.find('.delete-btn').attr('data-isbn', book.isbn);
 
       view.listElement.append(clone);
     }
 
     view.listElement.listview('refresh');
+  }
+
+  view.tagList = $('#tag-list');
+  view.tagEntryTemplate = $('#templates').find('.tag-entry');
+  view.renderTags = function() {
+    view.tagList.controlgroup('container').empty();
+
+    var tags = app.data.loadTags();
+
+    for(var i=0, len=tags.length; i<len; i++) {
+      var tag = tags[i];
+      var clone = view.tagEntryTemplate.clone();
+      var id = 'tag-' + tag;
+      clone.find('label').attr('for', id).html(tag);
+      clone.find('input[type="checkbox"]').attr('name', id).attr('id', id);
+      view.tagList.controlgroup('container').append(clone.html());
+    }
+    $('input[type="checkbox"]').checkboxradio();
+    view.tagList.controlgroup('refresh');
   }
 
 }).call(this, jQuery);
@@ -92,12 +135,15 @@ if (window.Touch) {
 
     // render the list at initialize
     app.view.renderList();
+    app.view.renderTags();
 
     $('#add-book-btn').click(function(){
       var title = app.view.inputs.title.val();
       var isbn = app.view.inputs.isbn.val();
-      app.data.addBook(title, isbn);
+      var tags = app.view.inputs.tags.val();
+      app.data.addBook(title, isbn, tags);
       app.view.renderList();
+      app.view.renderTags();
       app.view.inputs.clear();
     });
 

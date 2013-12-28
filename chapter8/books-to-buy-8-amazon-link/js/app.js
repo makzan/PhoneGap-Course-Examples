@@ -71,6 +71,7 @@ if (window.Touch) {
 
       var book = app.data.books[i];
 
+      clone.find('a.amazon-link').attr('href', 'http://www.amazon.com/s/?field-keywords='+book.title);
       clone.find('.book-title').html(book.title);
       clone.find('.isbn').html(book.isbn);
       clone.find('.delete-btn').attr('data-isbn', book.isbn);
