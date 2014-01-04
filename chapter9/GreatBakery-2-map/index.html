@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, minimum-scale=1, maximum-scale=1' name='viewport'>
+    <title>Great Bakery</title>
+    <link href='vendors/jquery.mobile-1.3.2.css' rel='stylesheet'>
+    <link href='css/app.css' rel='stylesheet'>
+  </head>
+  <body>
+    <div data-role='page' id='root'>
+      <div data-role='header'>
+        <h1>Great Bakery</h1>
+      </div>
+      <div data-role='content'>
+        <ul data-role='listview' data-inset='true'>
+          <li><a href='#news'>Latest news</a></li>
+          <li><a href='#gallery'>Photo gallery</a></li>
+          <li><a href='#map'>Where are we?</a></li>
+          <li><a href='#contact'>Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-role='page' id='news'>
+      <div data-role='header'>
+        <h2>News</h2>
+        <a data-icon='arrow-l' data-rel='back'>Great Bakery</a>
+      </div>
+      <div data-role='content'>
+        <ul data-role='listview'>
+          <li><a href='#news-content'>News title 1</a></li>
+          <li><a href='#news-content'>News title 2</a></li>
+          <li><a href='#news-content'>News title 3</a></li>
+          <li><a href='#news-content'>News title 4</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-role='page' id='news-content'>
+      <div data-role='header'>
+        <h2>News</h2>
+        <a data-icon='arrow-l' data-rel='back'>Great Bakery</a>
+      </div>
+      <div data-role='content'>
+        <p>Content here.</p>
+      </div>
+    </div>
+
+    <div data-role='page' id='gallery'>
+      <div data-role='header'>
+        <h2>Gallery</h2>
+        <a data-icon='arrow-l' data-rel='back'>Great Bakery</a>
+      </div>
+      <div data-role='content'>
+        <p>Gallery</p>
+      </div>
+    </div>
+
+    <div data-role='page' id='map'>
+      <div data-role='header'>
+        <h2>Map</h2>
+        <a data-icon='arrow-l' data-rel='back'>Great Bakery</a>
+      </div>
+      <div data-role='content'>
+        <h3>Where are we?</h3>
+        <p>Here is the map to the bakery.</p>
+        <div id='map-element'></div>
+      </div>
+    </div>
+
+    <div data-role='page' id='contact'>
+      <div data-role='header'>
+        <h2>Contact Us</h2>
+        <a data-icon='arrow-l' data-rel='back'>Great Bakery</a>
+      </div>
+      <div data-role='content'>
+        <p>Contact Us</p>
+      </div>
+    </div>
+
+
+    <script src='vendors/jquery-2.0.3.js'></script>
+    <script src='vendors/jquery.mobile-1.3.2.js'></script>
+    <script src='http://maps.google.com/maps/api/js?sensor=true'></script>
+    <script src='vendors/jquery.ui.map.js'></script>
+    <script src='js/app.js'></script>
+  </body>
+</html>
