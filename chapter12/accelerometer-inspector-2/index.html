@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, minimum-scale=1, maximum-scale=1' name='viewport'>
+    <title>Inspector</title>
+    <link href='vendors/jquery.mobile-1.3.2.css' rel='stylesheet'>
+    <link href='css/app.css' rel='stylesheet'>
+  </head>
+  <body>
+    <div data-role='page' id='root'>
+      <div data-role='header'>
+        <h1>Inspector</h1>
+        <a class='ui-btn-right' data-role='button' data-transition='slide' href='#about'>About</a>
+      </div>
+      <div data-role='content'>
+        <div class='row'>
+          <h2>X</h2>
+          <canvas id='x-canvas' width='80' height='40'></canvas>
+          <ul id='x' class='history'>
+            <li>No Data Yet</li>
+          </ul>
+        </div>
+        <div class='row'>
+          <h2>Y</h2>
+          <canvas id='y-canvas' width='80' height='40'></canvas>
+          <ul id='y' class='history'>
+            <li>No Data Yet</li>
+          </ul>
+        </div>
+        <div class='row'>
+          <h2>Z</h2>
+          <canvas id='z-canvas' width='80' height='40'></canvas>
+          <ul id='z' class='history'>
+            <li>No Data Yet</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role='page' id='about'>
+      <div data-role='header'>
+        <h2>About</h2>
+        <a data-icon='arrow-l' data-rel='back'>Inspector</a>
+      </div>
+      <div data-role='content'>
+        <p>App description here.</p>
+      </div>
+    </div>
+
+
+    <script src='vendors/jquery-2.0.3.js'></script>
+    <script src='vendors/jquery.mobile-1.3.2.js'></script>
+    <script src='js/app.js'></script>
+  </body>
+</html>

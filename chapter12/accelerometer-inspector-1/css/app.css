@@ -1,0 +1,12 @@
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  text-align: right;
+}
+.history {
+  width: 30%;
+  float: left;
+}
